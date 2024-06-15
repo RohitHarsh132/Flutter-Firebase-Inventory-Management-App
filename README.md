@@ -46,4 +46,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - This project was inspired by the need for efficient inventory management solutions.
-- Special thanks to the Flutter and Firebase communities for their invaluable resources and support.
+- Special thanks to the Almighty God, and then the Flutter and Firebase communities for their invaluable resources and support.
