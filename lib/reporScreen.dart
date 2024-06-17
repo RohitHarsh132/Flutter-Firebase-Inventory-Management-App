@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ReportPage extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
@@ -386,6 +387,7 @@ Widget _buildTotalCategoryCircularIndicator() {
 class Product {
   final String name;
   final int quantity;
+  // ignore: non_constant_identifier_names
   final String ImageUrl;
 
   Product(this.name, this.quantity, this.ImageUrl);

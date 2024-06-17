@@ -80,8 +80,6 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             const Text("Welcome to your solution !",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
-            const Text("@ Wubishet Asbe",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
             Stack(
               children: [
                 Image.asset("assets/images/splesh.png"),
@@ -92,6 +90,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 )
               ],
             ),
+            const Text("@ Wubishet Asbe",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
           ],
         ), // Show a loading indicator or logo
       ),

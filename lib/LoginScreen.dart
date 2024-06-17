@@ -17,7 +17,6 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-  @override
   void initstate() {
     _email = TextEditingController();
     _password = TextEditingController();
@@ -169,12 +168,10 @@ class _LoginViewState extends State<LoginView> {
                   width: MediaQuery.of(context).size.width,
                   child: TextButton(
                     style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
-                        backgroundColor: MaterialStateProperty.all(
+                        foregroundColor: WidgetStateProperty.all(Colors.white),
+                        backgroundColor: WidgetStateProperty.all(
                             const Color.fromRGBO(107, 59, 225, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
@@ -187,19 +184,21 @@ class _LoginViewState extends State<LoginView> {
                             email: email, password: password);
                         final user = FirebaseAuth.instance.currentUser;
                         if (user?.emailVerified ?? false) {
+                          // ignore: use_build_context_synchronously
                           GoRouter.of(context).go('/home');
                         } else {
                           await showErrorDialog(
                               context, 'Go to your Email and verify.');
                         }
                       } on FirebaseAuthException catch (e) {
-                        print("*********** ${e.code}");
                         if (e.code == 'user-not-found') {
+                          // ignore: use_build_context_synchronously
                           await showErrorDialog(context, 'User Not Found');
                         } else if (e.code == 'wrong-password') {
-                          print("********* ${e.code}");
                           await showErrorDialog(
-                              context, 'Wrong password Entered');
+                              // ignore: use_build_context_synchronously
+                              context,
+                              'Wrong password Entered');
                         }
                       }
                     },
@@ -227,11 +226,11 @@ class _LoginViewState extends State<LoginView> {
                     TextButton(
                       style: ButtonStyle(
                           foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          backgroundColor: MaterialStateProperty.all(
+                              WidgetStateProperty.all(Colors.white),
+                          backgroundColor: WidgetStateProperty.all(
                               const Color.fromRGBO(107, 59, 225, 1)),
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ))),

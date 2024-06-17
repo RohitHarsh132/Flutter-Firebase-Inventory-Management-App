@@ -30,12 +30,14 @@ class ItmeCard extends StatelessWidget {
             child: Card(
               margin: const EdgeInsets.all(7),
               color:
+                  // ignore: dead_code
                   true ? Colors.white : const Color.fromRGBO(107, 59, 225, 1),
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   side: true
                       ? BorderSide(
                           width: 2, color: Color.fromRGBO(107, 59, 225, 1))
+                      // ignore: dead_code
                       : BorderSide.none),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

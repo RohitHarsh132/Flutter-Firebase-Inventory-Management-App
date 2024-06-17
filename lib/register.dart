@@ -8,7 +8,7 @@ import 'package:wa_inventory/showDialog.dart';
 // import 'package:inventory_app/utilities/Show_Error_Dialog.dart';
 
 class RegisterView extends StatefulWidget {
-  const RegisterView({Key? key}) : super(key: key);
+  const RegisterView({super.key});
 
   @override
   State<RegisterView> createState() => _RegisterViewState();
@@ -34,18 +34,20 @@ class _RegisterViewState extends State<RegisterView> {
             'https://microbiology.ucr.edu/sites/default/files/styles/form_preview/public/blank-profile-pic.png?itok=4teBBoet', // Add logic to handle profile image upload
       });
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('User added to Firestore')),
       );
     } catch (e) {
+      // ignore: avoid_print
       print('Error adding users: $e');
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error adding user: $e')),
       );
     }
   }
 
-  @override
   void initstate() {
     _email = TextEditingController();
     _password = TextEditingController();
@@ -258,12 +260,12 @@ class _RegisterViewState extends State<RegisterView> {
                       child: TextButton(
                         style: ButtonStyle(
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            backgroundColor: MaterialStateProperty.all(
+                                WidgetStateProperty.all(Colors.white),
+                            backgroundColor: WidgetStateProperty.all(
                                 const Color.fromRGBO(107, 59, 225, 1)),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                const RoundedRectangleBorder(
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                    const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ))),
                         onPressed: () async {
@@ -294,6 +296,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                             if (user != null) {
                               showDialog(
+                                // ignore: use_build_context_synchronously
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
@@ -316,15 +319,20 @@ class _RegisterViewState extends State<RegisterView> {
                             //
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'Weak-Password') {
+                              // ignore: use_build_context_synchronously
                               showErrorDialog(context, 'Weak Password');
                             } else if (e.code == 'email-already-in-use') {
+                              // ignore: use_build_context_synchronously
                               showErrorDialog(context, 'Email Already in Use');
                             } else if (e.code == 'invalid-email') {
+                              // ignore: use_build_context_synchronously
                               showErrorDialog(context, 'Invalid Email Entered');
                             } else {
+                              // ignore: use_build_context_synchronously
                               await showErrorDialog(context, 'Error ${e.code}');
                             }
                           } catch (e) {
+                            // ignore: use_build_context_synchronously
                             await showErrorDialog(context, e.toString());
                           }
                         },
@@ -349,10 +357,10 @@ class _RegisterViewState extends State<RegisterView> {
                           child: TextButton(
                               style: ButtonStyle(
                                   foregroundColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                  backgroundColor: MaterialStateProperty.all(
+                                      WidgetStateProperty.all(Colors.white),
+                                  backgroundColor: WidgetStateProperty.all(
                                       const Color.fromRGBO(107, 59, 225, 1)),
-                                  shape: MaterialStateProperty.all<
+                                  shape: WidgetStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5),

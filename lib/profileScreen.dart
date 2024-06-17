@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import "package:wa_inventory/Services/database.dart";
 import 'package:wa_inventory/models/usermodel.dart';
 
 class ProfileEditPage extends StatelessWidget {
@@ -36,19 +35,15 @@ class ProfileEditForm extends StatefulWidget {
   const ProfileEditForm({super.key, required this.user});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProfileEditFormState createState() => _ProfileEditFormState();
 }
 
 class _ProfileEditFormState extends State<ProfileEditForm> {
   final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final FirestoreService _firestoreService = FirestoreService();
   late FirebaseFirestore _firestore;
-
-  final String _profileImageUrl = 'https://via.placeholder.com/150';
 
   late File _pickedImage; // Use File for selected image
 
@@ -157,7 +152,7 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
           ElevatedButton(
             style: const ButtonStyle(
                 backgroundColor:
-                    MaterialStatePropertyAll(Color.fromRGBO(107, 59, 225, 1))),
+                    WidgetStatePropertyAll(Color.fromRGBO(107, 59, 225, 1))),
             onPressed: () async {
               Map<String, dynamic> updateUserInfo = {};
               if (_fullNameController != widget.user.name) {
@@ -192,14 +187,18 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
                     .collection('users')
                     .doc(widget.user.uid)
                     .update(updateUserInfo);
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Product updated successfully'),
                   ),
                 );
+                // ignore: use_build_context_synchronously
                 Navigator.pop(context, true);
               } catch (error) {
+                // ignore: avoid_print
                 print('Error updating User Info: $error');
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Error updating product'),
@@ -243,7 +242,6 @@ class _ProfilePageState extends State<ProfilePage> {
     if (firebaseUser != null) {
       DocumentSnapshot userDataSnapshot =
           await _firestore.collection('users').doc(firebaseUser.uid).get();
-      print('**** $firebaseUser');
       if (userDataSnapshot.exists) {
         setState(() {
           _user = myUser(
@@ -253,9 +251,11 @@ class _ProfilePageState extends State<ProfilePage> {
             phone: userDataSnapshot['phone'],
             imageUrl: userDataSnapshot['imageUrl'],
           );
+          // ignore: avoid_print
           print("########## fetching");
         });
       } else {
+        // ignore: avoid_print
         print("document not found ^^^^^*********");
       }
     }
@@ -360,7 +360,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       _navigateToProfileEdit();
                     },
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                       const Color.fromRGBO(107, 59, 225, 1),
                     )),
                     child: SizedBox(

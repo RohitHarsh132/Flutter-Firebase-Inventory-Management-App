@@ -1,7 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import "package:wa_inventory/EditScreen.dart";
-import 'package:wa_inventory/Services/database.dart';
 import 'package:wa_inventory/models/products.dart' as pmodel;
 
 class ProductDetailPage extends StatefulWidget {
@@ -14,7 +13,6 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
-  final FirestoreService _firestoreService = FirestoreService();
   late pmodel.Product _product = widget.cuproduct;
 
   void _navigateToEditScreen() async {
