@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Add a delay and navigate to the register page
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 10), () {
       GoRouter.of(context).go('/login');
     });
   }
@@ -78,7 +78,9 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Welcome to your solution!",
+            const Text("Welcome to your solution !",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
+            const Text("@ Wubishet Asbe",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
             Stack(
               children: [

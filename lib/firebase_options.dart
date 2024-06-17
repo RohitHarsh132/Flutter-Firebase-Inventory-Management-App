@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -44,31 +41,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCOlyEtinBp0Rjmcs4osrrGdaXbmmIf3bk',
-    appId: '1:82436170302:web:4c1a7a32c2caa1f261676f',
-    messagingSenderId: '82436170302',
-    projectId: 'dan-energy-inventory-app',
-    authDomain: 'dan-energy-inventory-app.firebaseapp.com',
-    storageBucket: 'dan-energy-inventory-app.appspot.com',
+    apiKey: 'AIzaSyDzD0vgicbevKRM_YqMK3p5G0YRo13yQtY',
+    appId: '1:133953173361:web:173549d7c7fca98ca8e8d0',
+    messagingSenderId: '133953173361',
+    projectId: 'inventory-mgmt-app',
+    authDomain: 'inventory-mgmt-app.firebaseapp.com',
+    storageBucket: 'inventory-mgmt-app.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC3nFpbqJrndvsUPoEJ_Zzp4qKQT9xSV1E',
-    appId: '1:82436170302:android:baccf298b0d2017761676f',
-    messagingSenderId: '82436170302',
-    projectId: 'dan-energy-inventory-app',
-    storageBucket: 'dan-energy-inventory-app.appspot.com',
+    apiKey: 'AIzaSyB5N2_gNFrHuNRoY4PBvSakbuOLaXlc5c0',
+    appId: '1:133953173361:android:68a1b16ffd6eca54a8e8d0',
+    messagingSenderId: '133953173361',
+    projectId: 'inventory-mgmt-app',
+    storageBucket: 'inventory-mgmt-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB7FuW9UOqzKTwXVrm8qtqaqjcMRAVkx6M',
-    appId: '1:82436170302:ios:2e61b7ce34dc3c0d61676f',
-    messagingSenderId: '82436170302',
-    projectId: 'dan-energy-inventory-app',
-    storageBucket: 'dan-energy-inventory-app.appspot.com',
-    iosClientId:
-        '82436170302-shahh6k3kni3eom4kft8nkfavqkm0645.apps.googleusercontent.com',
-    iosBundleId: 'com.example.inventory',
+    apiKey: 'AIzaSyAyE3RWD9awtCl3YxowRp1chU-DWiTB1xc',
+    appId: '1:133953173361:ios:fff9b3914d120147a8e8d0',
+    messagingSenderId: '133953173361',
+    projectId: 'inventory-mgmt-app',
+    storageBucket: 'inventory-mgmt-app.appspot.com',
+    iosBundleId: 'com.example.waInventory',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -81,4 +76,14 @@ class DefaultFirebaseOptions {
         '82436170302-vcf2s41itf3kc80l6agp7tjvo4phtspj.apps.googleusercontent.com',
     iosBundleId: 'com.example.inventory.RunnerTests',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDzD0vgicbevKRM_YqMK3p5G0YRo13yQtY',
+    appId: '1:133953173361:web:a4130b8ee4d3847fa8e8d0',
+    messagingSenderId: '133953173361',
+    projectId: 'inventory-mgmt-app',
+    authDomain: 'inventory-mgmt-app.firebaseapp.com',
+    storageBucket: 'inventory-mgmt-app.appspot.com',
+  );
+
 }
