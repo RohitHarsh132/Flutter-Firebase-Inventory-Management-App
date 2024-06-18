@@ -91,7 +91,9 @@ class DeleteScreen extends StatelessWidget {
                     child: const Text(
                       '   Delete   ',
                       style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                 ],

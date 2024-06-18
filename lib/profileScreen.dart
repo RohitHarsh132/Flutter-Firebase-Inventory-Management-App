@@ -150,67 +150,69 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
           const SizedBox(height: 8.0),
           const SizedBox(height: 16.0),
           ElevatedButton(
-            style: const ButtonStyle(
-                backgroundColor:
-                    WidgetStatePropertyAll(Color.fromRGBO(107, 59, 225, 1))),
-            onPressed: () async {
-              Map<String, dynamic> updateUserInfo = {};
-              if (_fullNameController != widget.user.name) {
-                updateUserInfo['name'] = _fullNameController.text;
-              }
-              if (_phoneController.text != widget.user.phone.toString()) {
-                updateUserInfo['phone'] = _phoneController.text;
-              }
+              style: const ButtonStyle(
+                  backgroundColor:
+                      WidgetStatePropertyAll(Color.fromRGBO(107, 59, 225, 1))),
+              onPressed: () async {
+                Map<String, dynamic> updateUserInfo = {};
+                if (_fullNameController != widget.user.name) {
+                  updateUserInfo['name'] = _fullNameController.text;
+                }
+                if (_phoneController.text != widget.user.phone.toString()) {
+                  updateUserInfo['phone'] = _phoneController.text;
+                }
 
-              if (_usernameController.text != widget.user.username) {
-                updateUserInfo['username'] = _usernameController.text;
-              }
+                if (_usernameController.text != widget.user.username) {
+                  updateUserInfo['username'] = _usernameController.text;
+                }
 
-              // Upload the new image if selected
-              if (_pickedImage.existsSync() &&
-                  _pickedImage.path != widget.user.imageUrl) {
-                final String fileName =
-                    DateTime.now().millisecondsSinceEpoch.toString();
-                final Reference storageReference = FirebaseStorage.instance
-                    .ref()
-                    .child('Users_images/$fileName.jpg');
-                final UploadTask uploadTask =
-                    storageReference.putFile(_pickedImage);
+                // Upload the new image if selected
+                if (_pickedImage.existsSync() &&
+                    _pickedImage.path != widget.user.imageUrl) {
+                  final String fileName =
+                      DateTime.now().millisecondsSinceEpoch.toString();
+                  final Reference storageReference = FirebaseStorage.instance
+                      .ref()
+                      .child('Users_images/$fileName.jpg');
+                  final UploadTask uploadTask =
+                      storageReference.putFile(_pickedImage);
 
-                TaskSnapshot taskSnapshot = await uploadTask;
-                String imageUrl = await taskSnapshot.ref.getDownloadURL();
-                updateUserInfo['imageUrl'] = imageUrl; // Update the image URL
-              }
+                  TaskSnapshot taskSnapshot = await uploadTask;
+                  String imageUrl = await taskSnapshot.ref.getDownloadURL();
+                  updateUserInfo['imageUrl'] = imageUrl; // Update the image URL
+                }
 
-              try {
-                await _firestore
-                    .collection('users')
-                    .doc(widget.user.uid)
-                    .update(updateUserInfo);
-                // ignore: use_build_context_synchronously
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Product updated successfully'),
-                  ),
-                );
-                // ignore: use_build_context_synchronously
-                Navigator.pop(context, true);
-              } catch (error) {
-                // ignore: avoid_print
-                print('Error updating User Info: $error');
-                // ignore: use_build_context_synchronously
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Error updating product'),
-                  ),
-                );
-              }
-              setState(() {
-                _pickedImage = File(''); // Clear the picked image
-              });
-            },
-            child: const Text('Save Changes'),
-          ),
+                try {
+                  await _firestore
+                      .collection('users')
+                      .doc(widget.user.uid)
+                      .update(updateUserInfo);
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Product updated successfully'),
+                    ),
+                  );
+                  // ignore: use_build_context_synchronously
+                  Navigator.pop(context, true);
+                } catch (error) {
+                  // ignore: avoid_print
+                  print('Error updating User Info: $error');
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Error updating product'),
+                    ),
+                  );
+                }
+                setState(() {
+                  _pickedImage = File(''); // Clear the picked image
+                });
+              },
+              child: const Text(
+                'Save Changes',
+                style: TextStyle(color: Colors.white),
+              )),
         ],
       )),
     );
@@ -368,7 +370,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: const Center(
                             child: Text(
                           'Edit',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
                         ))),
                   ),
                 ],

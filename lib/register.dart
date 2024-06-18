@@ -374,7 +374,7 @@ class _RegisterViewState extends State<RegisterView> {
                               },
                               child: const Text(
                                 'Login here ',
-                                style: TextStyle(),
+                                style: TextStyle(color: Colors.white),
                               )),
                         ),
                       ],

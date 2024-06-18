@@ -163,10 +163,13 @@ class _StockOutPageState extends State<StockOutPage> {
                   await _fetchProductByPid(_pidController.text);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
+                  backgroundColor: WidgetStateProperty.all<Color>(
                       const Color.fromRGBO(107, 59, 225, 1)),
                 ),
-                child: const Text('Fetch Product'),
+                child: const Text(
+                  'Fetch Product',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               const SizedBox(height: 16),
               if (_selectedProduct != null) ...[
@@ -217,9 +220,14 @@ class _StockOutPageState extends State<StockOutPage> {
                 ElevatedButton(
                   onPressed: _updateProductQuantity,
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromRGBO(107, 59, 225, 1))),
-                  child: const Text('Update Quantity'),
+                  child: const Text(
+                    'Update Quantity',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ],

@@ -91,7 +91,11 @@ class _SplashScreenState extends State<SplashScreen> {
               ],
             ),
             const Text("@ Wubishet Asbe",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.blue,
+                )),
           ],
         ), // Show a loading indicator or logo
       ),

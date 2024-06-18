@@ -367,7 +367,7 @@ class _EditScreenState extends State<EditScreen> {
                   }
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
+                  backgroundColor: WidgetStateProperty.all<Color>(
                     const Color.fromRGBO(107, 59, 225, 1),
                   ),
                 ),
@@ -375,7 +375,10 @@ class _EditScreenState extends State<EditScreen> {
                   padding: EdgeInsets.all(10.0),
                   child: Text(
                     'Update',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

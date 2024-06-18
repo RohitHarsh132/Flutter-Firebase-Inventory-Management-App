@@ -312,14 +312,14 @@ class _AddProductFormState extends State<AddProductForm> {
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                         const Color.fromRGBO(107, 59, 225, 1)),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Text(
                       'Add',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )),
             ],
