@@ -203,7 +203,12 @@ class _NotificationPageState extends State<NotificationPage> {
                       notifications.clear();
                     });
                   },
-                  child: const Text('Clear All'),
+                  child: const Text(
+                    'Clear All',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),

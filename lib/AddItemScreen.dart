@@ -319,7 +319,10 @@ class _AddProductFormState extends State<AddProductForm> {
                     padding: EdgeInsets.all(10.0),
                     child: Text(
                       'Add',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   )),
             ],

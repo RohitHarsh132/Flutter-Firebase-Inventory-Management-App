@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class ReportPage extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
@@ -13,6 +12,7 @@ class ReportPage extends StatelessWidget {
     Product('Product E', 12, "assets/images/shoe1.jpg"),
     Product('Product F', 20, "assets/images/shoe1.jpg"),
   ];
+
   final List<Category> categoryDistribution = [
     Category('Category X', 30),
     Category('Category Y', 25),
@@ -42,18 +42,12 @@ class ReportPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildRunningOutProducts(),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Row(
               children: [
-                const SizedBox(
-                  width: 30,
-                ),
+                const SizedBox(width: 30),
                 _buildTotalStockCircularIndicator(),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 _buildTotalCategoryCircularIndicator(),
               ],
             ),
@@ -72,7 +66,7 @@ class ReportPage extends StatelessWidget {
   Widget _buildRunningOutProducts() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -146,7 +140,7 @@ class ReportPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Top selling Products',
+                'Top Selling Products',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8.0),
@@ -162,16 +156,16 @@ class ReportPage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                              width: 100.0,
-                              height: 100.0,
-                              // color: Colors.red,
-                              alignment: Alignment.center,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  product.ImageUrl,
-                                  fit: BoxFit.fill,
-                                ),
-                              )),
+                            width: 100.0,
+                            height: 100.0,
+                            alignment: Alignment.center,
+                            child: ClipRRect(
+                              child: Image.asset(
+                                product.imageUrl,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                           const SizedBox(height: 4.0),
                           Text('Sold: ${product.quantity}'),
                         ],
@@ -209,12 +203,12 @@ class ReportPage extends StatelessWidget {
                   gridData: const FlGridData(show: false),
                   lineBarsData: [
                     LineChartBarData(
-                      spots: [
-                        const FlSpot(0, 10),
-                        const FlSpot(2, 20),
-                        const FlSpot(4, 15),
-                        const FlSpot(6, 18),
-                        const FlSpot(8, 25),
+                      spots: const [
+                        FlSpot(0, 10),
+                        FlSpot(2, 20),
+                        FlSpot(4, 15),
+                        FlSpot(6, 18),
+                        FlSpot(8, 25),
                       ],
                       color: Colors.blue,
                       isCurved: true,
@@ -269,128 +263,123 @@ class ReportPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _buildTotalStockCircularIndicator() {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
-  return Center(
-    child: Container(
-      width: 150.0,
-      height: 150.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        border: Border.all(color: Colors.green, width: 5),
-      ),
-      child: Center(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: firestore
-              .collection('users')
-              .doc(user!.uid)
-              .collection('products')
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              int totalItems = snapshot.data!.docs.length;
-
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: 45,
-                  ),
-                  Text(
-                    totalItems.toString(),
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const Text(
-                    "Total Items",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              return const CircularProgressIndicator();
-            }
-          },
+  Widget _buildTotalStockCircularIndicator() {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    User? user = FirebaseAuth.instance.currentUser;
+    return Center(
+      child: Container(
+        width: 150.0,
+        height: 150.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(color: Colors.green, width: 5),
         ),
-      ),
-    ),
-  );
-}
+        child: Center(
+          child: StreamBuilder<QuerySnapshot>(
+            stream: firestore
+                .collection('users')
+                .doc(user!.uid)
+                .collection('products')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                int totalItems = snapshot.data!.docs.length;
 
-Widget _buildTotalCategoryCircularIndicator() {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
-  return Center(
-    child: Container(
-      width: 150.0,
-      height: 150.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        border: Border.all(color: Colors.blue, width: 5),
-      ),
-      child: Center(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: firestore
-              .collection('users')
-              .doc(user!.uid)
-              .collection('products')
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final items = snapshot.data!.docs;
-              final categoryCounts = <String, int>{};
-
-              for (final item in items) {
-                final categoryName = item['category'] as String;
-                categoryCounts[categoryName] =
-                    (categoryCounts[categoryName] ?? 0) + 1;
+                return Column(
+                  children: [
+                    const SizedBox(height: 45),
+                    Text(
+                      totalItems.toString(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      "Total Items",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return const CircularProgressIndicator();
               }
-
-              final totalCategories = categoryCounts.length;
-
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: 45,
-                  ),
-                  Text(
-                    totalCategories.toString(),
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const Text(
-                    "Total Categories",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              return const CircularProgressIndicator();
-            }
-          },
+            },
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
+
+  Widget _buildTotalCategoryCircularIndicator() {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    User? user = FirebaseAuth.instance.currentUser;
+    return Center(
+      child: Container(
+        width: 150.0,
+        height: 150.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(color: Colors.blue, width: 5),
+        ),
+        child: Center(
+          child: StreamBuilder<QuerySnapshot>(
+            stream: firestore
+                .collection('users')
+                .doc(user!.uid)
+                .collection('products')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final items = snapshot.data!.docs;
+                final categoryCounts = <String, int>{};
+
+                for (final item in items) {
+                  final categoryName = item['category'] as String;
+                  categoryCounts[categoryName] =
+                      (categoryCounts[categoryName] ?? 0) + 1;
+                }
+
+                final totalCategories = categoryCounts.length;
+
+                return Column(
+                  children: [
+                    const SizedBox(height: 45),
+                    Text(
+                      totalCategories.toString(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      "Total Categories",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class Product {
   final String name;
   final int quantity;
-  // ignore: non_constant_identifier_names
-  final String ImageUrl;
+  final String imageUrl;
 
-  Product(this.name, this.quantity, this.ImageUrl);
+  Product(this.name, this.quantity, this.imageUrl);
 }
 
 class Category {

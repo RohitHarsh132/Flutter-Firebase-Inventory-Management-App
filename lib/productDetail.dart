@@ -1,6 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import "package:wa_inventory/EditScreen.dart";
+import 'package:wa_inventory/EditScreen.dart';
 import 'package:wa_inventory/models/products.dart' as pmodel;
 
 class ProductDetailPage extends StatefulWidget {
@@ -53,23 +53,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(107, 59, 225, 1),
-        title: Row(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * .2,
-            ),
-            const Text('Product Detail'),
-          ],
-        ),
+        title: const Center(child: Text('Product Detail')),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             Center(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * .25,
@@ -87,25 +78,29 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  _product.name,
-                  style: const TextStyle(
-                      fontSize: 24.0, fontWeight: FontWeight.bold),
+                Flexible(
+                  child: Text(
+                    _product.name,
+                    style: const TextStyle(
+                        fontSize: 24.0, fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 IconButton(
-                    onPressed: () => {_navigateToEditScreen()},
-                    icon: const Icon(
-                      Icons.edit_note,
-                      size: 50,
-                      color: Color.fromRGBO(107, 59, 225, 1),
-                      semanticLabel: "Edit",
-                    ))
+                  onPressed: _navigateToEditScreen,
+                  icon: const Icon(
+                    Icons.edit_note,
+                    size: 50,
+                    color: Color.fromRGBO(107, 59, 225, 1),
+                    semanticLabel: "Edit",
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 25.0),
             Center(
               child: Container(
-                height: MediaQuery.of(context).size.height * .25,
+                height: MediaQuery.of(context).size.height * .35,
                 width: MediaQuery.of(context).size.width * .85,
                 decoration: BoxDecoration(
                     border: Border.all(
@@ -113,9 +108,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       "Daily Activity",
                       style: TextStyle(
@@ -123,27 +116,30 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           fontWeight: FontWeight.w600,
                           decoration: TextDecoration.underline),
                     ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        SizedBox(
-                          height: 180.0,
-                          width: 180,
-                          child: charts.PieChart(
-                            data,
-                            animate: true,
+                    Flexible(
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 20),
+                          Flexible(
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * .25,
+                              width: MediaQuery.of(context).size.width * .4,
+                              child: charts.PieChart(
+                                data,
+                                animate: true,
+                              ),
+                            ),
                           ),
-                        ),
-                        _buildLegend(),
-                      ],
+                          Flexible(
+                            child: _buildLegend(),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
             const SizedBox(height: 16.0),
             Text(
               'Price: \$ ${_product.price.toStringAsFixed(2)}',
@@ -186,10 +182,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return Row(
       children: [
         Container(
-            width: 16.0,
-            height: 16.0,
-            color: color,
-            margin: const EdgeInsets.only(top: 5.0)),
+          width: 16.0,
+          height: 16.0,
+          color: color,
+          margin: const EdgeInsets.only(top: 5.0),
+        ),
+        const SizedBox(width: 5),
         Text(label),
       ],
     );
