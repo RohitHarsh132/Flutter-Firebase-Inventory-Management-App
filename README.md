@@ -54,8 +54,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Portfolio
 
-# Inventory Management App Portfolio
-
 ![Inventory Mgmt App Portfolio page-1](https://github.com/Wubshet-Asbegiorggis/Flutter-Firebase-Inventory-Management-App/raw/master/Inventory%20Mgmt%20App%20Portfolio%20page-1.jpg)
 ![Inventory Mgmt App Portfolio page-2](https://github.com/Wubshet-Asbegiorggis/Flutter-Firebase-Inventory-Management-App/raw/master/Inventory%20Mgmt%20App%20Portfolio%20page-2.jpg)
 ![Inventory Mgmt App Portfolio page-3](https://github.com/Wubshet-Asbegiorggis/Flutter-Firebase-Inventory-Management-App/raw/master/Inventory%20Mgmt%20App%20Portfolio%20page-3.jpg)
