@@ -80,46 +80,44 @@ class ImageTextCard extends StatelessWidget {
 
 class DisplayCard extends StatelessWidget {
   const DisplayCard({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+    return const SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              Row(
-                children: const [
-                  ImageTextCard(
-                    imagePath: 'assets/images/inventory.png',
-                    text: 'Add Items',
-                    isTrue: false,
-                  ),
-                  ImageTextCard(
-                    imagePath: 'assets/images/stockout.png',
-                    text: 'Stock Out',
-                    isTrue: true,
-                  )
-                ],
-              ),
-              Row(
-                children: const [
-                  ImageTextCard(
-                    imagePath: 'assets/images/report.png',
-                    text: 'Inventory Count',
-                    isTrue: true,
-                  ),
-                  ImageTextCard(
-                    imagePath: 'assets/images/inventorylist.png',
-                    text: 'Inventory',
-                    isTrue: false,
-                  )
-                ],
-              ),
-            ],
-          ),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ImageTextCard(
+                  imagePath: 'assets/images/inventory.png',
+                  text: 'Add Items',
+                  isTrue: false,
+                ),
+                ImageTextCard(
+                  imagePath: 'assets/images/stockout.png',
+                  text: 'Stock Out',
+                  isTrue: true,
+                )
+              ],
+            ),
+            Row(
+              children: [
+                ImageTextCard(
+                  imagePath: 'assets/images/report.png',
+                  text: 'Inventory Count',
+                  isTrue: true,
+                ),
+                ImageTextCard(
+                  imagePath: 'assets/images/inventorylist.png',
+                  text: 'Inventory',
+                  isTrue: false,
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
