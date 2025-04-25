@@ -1,36 +1,47 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wa_inventory/BottomNavigationBar.dart';
-import 'package:wa_inventory/LoginScreen.dart';
-import 'package:wa_inventory/register.dart';
-
+import 'package:wa_inventory/features/navigation/bottom_navigation_bar.dart';
+import 'package:wa_inventory/features/auth/login_screen.dart';
+import 'package:wa_inventory/features/auth/register_screen.dart';
+import 'package:wa_inventory/features/inventory/add_item_screen.dart';
+import 'package:wa_inventory/features/inventory/edit_item_screen.dart';
+import 'package:wa_inventory/features/inventory/item_detail_screen.dart';
+import 'package:wa_inventory/features/inventory/home_screen.dart';
+import 'package:wa_inventory/core/theme/app_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Required for Firebase.initializeApp()
+  WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    debugPrint('Firebase initialized successfully');
+  } catch (e) {
+    debugPrint('Error initializing Firebase: $e');
+  }
 
-  runApp(MyApp()); // Replace MyApp with your app's widget
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Inventory',
+      title: 'Inventory Management',
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       routerConfig: _router,
     );
   }
 
-  final _router = GoRouter(
+  static final _router = GoRouter(
     initialLocation: '/splash',
     routes: [
       GoRoute(
@@ -39,17 +50,38 @@ class MyApp extends StatelessWidget {
       ),
       GoRoute(
         path: '/register',
-        builder: (context, state) => const RegisterView(),
+        builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginView(),
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: '/home',
         builder: (context, state) => const BottomNavigationScreen(),
       ),
+      GoRoute(
+        path: '/add-item',
+        builder: (context, state) => const AddItemScreen(),
+      ),
+      GoRoute(
+        path: '/edit-item/:id',
+        builder: (context, state) => EditItemScreen(
+          itemId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/item-detail/:id',
+        builder: (context, state) => ItemDetailScreen(
+          itemId: state.pathParameters['id']!,
+        ),
+      ),
     ],
+    errorBuilder: (context, state) => Scaffold(
+      body: Center(
+        child: Text('Error: ${state.error}'),
+      ),
+    ),
   );
 }
 
@@ -64,10 +96,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Add a delay and navigate to the register page
-    Future.delayed(const Duration(seconds: 10), () {
+    _navigateToNextScreen();
+  }
+
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (mounted) {
       GoRouter.of(context).go('/login');
-    });
+    }
   }
 
   @override
@@ -75,29 +111,43 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Welcome to your solution !",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
-            Stack(
-              children: [
-                Image.asset("assets/images/splesh.png"),
-                Positioned(
-                  top: MediaQuery.of(context).size.height * .2,
-                  left: MediaQuery.of(context).size.width * .45,
-                  child: const Center(child: CircularProgressIndicator()),
-                )
-              ],
+            const Text(
+              "Welcome to Inventory Management",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            const Text("@ Wubishet Asbe",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.blueAccent,
-                )),
+            const SizedBox(height: 20),
+            Image.asset(
+              "assets/images/splesh.png",
+              height: 200,
+              width: 200,
+              errorBuilder: (context, error, stackTrace) {
+                debugPrint('Error loading image: $error');
+                return const Icon(
+                  Icons.inventory,
+                  size: 100,
+                  color: Colors.blue,
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 20),
+            const Text(
+              "@ Wubishet Asbe",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.blueAccent,
+              ),
+            ),
           ],
-        ), // Show a loading indicator or logo
+        ),
       ),
     );
   }

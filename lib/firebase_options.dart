@@ -27,7 +27,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -41,49 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDzD0vgicbevKRM_YqMK3p5G0YRo13yQtY',
-    appId: '1:133953173361:web:173549d7c7fca98ca8e8d0',
-    messagingSenderId: '133953173361',
-    projectId: 'inventory-mgmt-app',
-    authDomain: 'inventory-mgmt-app.firebaseapp.com',
-    storageBucket: 'inventory-mgmt-app.appspot.com',
+    apiKey: 'AIzaSyD7HDf5ScEvQwvmf-3tKtJi5MUla5bA10c',
+    appId: '1:962597248401:web:bd3ece56b9f229c3fece30',
+    messagingSenderId: '962597248401',
+    projectId: 'inventory-management-app-38c45',
+    authDomain: 'inventory-management-app-38c45.firebaseapp.com',
+    storageBucket: 'inventory-management-app-38c45.firebasestorage.app',
+    measurementId: 'G-FVCFDR83BB',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB5N2_gNFrHuNRoY4PBvSakbuOLaXlc5c0',
-    appId: '1:133953173361:android:68a1b16ffd6eca54a8e8d0',
-    messagingSenderId: '133953173361',
-    projectId: 'inventory-mgmt-app',
-    storageBucket: 'inventory-mgmt-app.appspot.com',
+    apiKey: 'AIzaSyD7HDf5ScEvQwvmf-3tKtJi5MUla5bA10c',
+    appId: '1:962597248401:android:bd3ece56b9f229c3fece30',
+    messagingSenderId: '962597248401',
+    projectId: 'inventory-management-app-38c45',
+    storageBucket: 'inventory-management-app-38c45.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAyE3RWD9awtCl3YxowRp1chU-DWiTB1xc',
-    appId: '1:133953173361:ios:fff9b3914d120147a8e8d0',
-    messagingSenderId: '133953173361',
-    projectId: 'inventory-mgmt-app',
-    storageBucket: 'inventory-mgmt-app.appspot.com',
-    iosBundleId: 'com.example.waInventory',
+    apiKey: 'AIzaSyD7HDf5ScEvQwvmf-3tKtJi5MUla5bA10c',
+    appId: '1:962597248401:ios:bd3ece56b9f229c3fece30',
+    messagingSenderId: '962597248401',
+    projectId: 'inventory-management-app-38c45',
+    storageBucket: 'inventory-management-app-38c45.firebasestorage.app',
+    iosClientId: 'YOUR_IOS_CLIENT_ID',
+    iosBundleId: 'com.example.wa_inventory',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB7FuW9UOqzKTwXVrm8qtqaqjcMRAVkx6M',
-    appId: '1:82436170302:ios:c132d0b12014b0f461676f',
-    messagingSenderId: '82436170302',
-    projectId: 'dan-energy-inventory-app',
-    storageBucket: 'dan-energy-inventory-app.appspot.com',
-    iosClientId:
-        '82436170302-vcf2s41itf3kc80l6agp7tjvo4phtspj.apps.googleusercontent.com',
-    iosBundleId: 'com.example.inventory.RunnerTests',
+    apiKey: 'AIzaSyD7HDf5ScEvQwvmf-3tKtJi5MUla5bA10c',
+    appId: '1:962597248401:macos:bd3ece56b9f229c3fece30',
+    messagingSenderId: '962597248401',
+    projectId: 'inventory-management-app-38c45',
+    storageBucket: 'inventory-management-app-38c45.firebasestorage.app',
+    iosClientId: 'YOUR_IOS_CLIENT_ID',
+    iosBundleId: 'com.example.wa_inventory',
   );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDzD0vgicbevKRM_YqMK3p5G0YRo13yQtY',
-    appId: '1:133953173361:web:a4130b8ee4d3847fa8e8d0',
-    messagingSenderId: '133953173361',
-    projectId: 'inventory-mgmt-app',
-    authDomain: 'inventory-mgmt-app.firebaseapp.com',
-    storageBucket: 'inventory-mgmt-app.appspot.com',
-  );
-
 }
