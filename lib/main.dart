@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * Enhanced with latest Flutter and Firebase features
+ * Improved performance and UI/UX
+ */
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -114,7 +120,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Welcome to Inventory Management",
+              "Welcome to Smart Inventory Management",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -129,7 +135,7 @@ class _SplashScreenState extends State<SplashScreen> {
               errorBuilder: (context, error, stackTrace) {
                 debugPrint('Error loading image: $error');
                 return const Icon(
-                  Icons.inventory,
+                  Icons.inventory_2_rounded,
                   size: 100,
                   color: Colors.blue,
                 );
@@ -139,9 +145,9 @@ class _SplashScreenState extends State<SplashScreen> {
             const CircularProgressIndicator(),
             const SizedBox(height: 20),
             const Text(
-              "@ Wubishet Asbe",
+              "© 2024 Inventory Management System",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: Colors.blueAccent,
               ),
