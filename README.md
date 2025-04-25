@@ -2,6 +2,8 @@
 
 A modern inventory management application built with Flutter and Firebase, featuring real-time updates, authentication, and a clean Material Design 3 interface.
 
+> Last Updated: February 2024 - Enhanced with latest Flutter and Firebase features
+
 ## Features
 
 - 🔐 Firebase Authentication

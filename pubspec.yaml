@@ -1,7 +1,8 @@
 name: wa_inventory
 description: A Flutter Firebase Inventory Management App
+# Last updated: February 2024 - Enhanced with latest dependencies
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
