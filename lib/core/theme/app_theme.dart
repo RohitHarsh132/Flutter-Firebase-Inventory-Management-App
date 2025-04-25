@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * Application theme configuration
+ * Supports both light and dark themes
+ */
+
 import 'package:flutter/material.dart';
 
 class AppTheme {

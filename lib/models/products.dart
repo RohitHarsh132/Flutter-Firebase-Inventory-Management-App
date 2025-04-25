@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * Product model definition
+ * Defines the structure for product data
+ */
+
 class Product {
   final String name;
   final String pid;

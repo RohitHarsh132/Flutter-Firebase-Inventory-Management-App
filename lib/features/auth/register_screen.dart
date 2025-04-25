@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * Registration screen implementation
+ * Handles new user registration and account creation
+ */
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * Login screen implementation
+ * Handles user authentication and login flow
+ */
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';

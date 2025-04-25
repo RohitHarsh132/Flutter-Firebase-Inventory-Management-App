@@ -1,3 +1,9 @@
+/*
+ * Last Updated: February 2024
+ * User model definition
+ * Defines the structure for user data
+ */
+
 class myUser {
   final String name;
   final String username;
